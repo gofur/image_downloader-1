@@ -393,7 +393,7 @@ extension SwiftImageDownloaderPlugin: URLSessionDelegate {
                     let metadata = MetaDataUtils.getMetaData(imageData: data)
                     let orientation = metadata[String(kCGImagePropertyOrientation)] as? UInt32 ?? 0
                     let newImage = UIImage(cgImage: uiImage.cgImage!, scale: 1.0, orientation: MetaDataUtils.getNormalizedUIImageOrientation(CGImagePropertyOrientation(rawValue: orientation)))
-                    let jpegData = newImage.jpegData(compressionQuality: 1.0)!
+                    let jpegData = newImage.UIImageJPEGRepresentation(compressionQuality: 1.0)!
                     let newData = MetaDataUtils.updateMesataData(metaData: metadata, imageData: jpegData)
                     saveImage(newData, result: result)
                     return
